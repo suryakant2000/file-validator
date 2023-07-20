@@ -1,0 +1,23 @@
+{
+  "name": "file-validator",
+  "version": "1.0.0",
+  "description": "This package is designed to check file (MIME) type and extension as well.",
+  "main": "fileValidator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suryakant2000/file-validator.git"
+  },
+  "keywords": [
+    "file-validator",
+    "image-validator"
+  ],
+  "author": "suryakant",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suryakant2000/file-validator/issues"
+  },
+  "homepage": "https://github.com/suryakant2000/file-validator#readme"
+}
