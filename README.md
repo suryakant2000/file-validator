@@ -13,6 +13,8 @@ npm i generic-file-validator
 | ------------- | ------------- |
 | image  | .jpg, .jpeg, .png, .gif, .webp, .tiff, .bmp  |
 
+<br>
+
 ## User guide
 
 ### Props
