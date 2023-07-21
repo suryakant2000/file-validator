@@ -1,4 +1,4 @@
-# file-validator
+# generic-file-validator
 
 ### What it does?
 It checks the file MIME type, and validate it against the extension.
