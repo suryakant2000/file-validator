@@ -1,6 +1,6 @@
 {
-  "name": "@suryakant/file-validator",
-  "version": "1.0.0",
+  "name": "generic-file-validator",
+  "version": "1.1.0",
   "description": "This package is designed to check file (MIME) type and extension as well.",
   "main": "fileValidator.js",
   "scripts": {

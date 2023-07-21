@@ -45,20 +45,21 @@ module.exports = fileValidator = (args, outputFunction) => {
   }
   // set default extension for all media type end...
 
-  if (whitelistExtension.lenght > 0) {
+  if (whitelistExtension.length > 0) {
     // updating checkFileAgainst for white listed extension
-    let whitelistExtensionNotFoundIncheckFileAgainst = whitelistExtension.map(
-      (eachWhitelistExtension) =>
-        !checkFileAgainst.includes(eachWhitelistExtension)
-    );
+    let whitelistExtensionNotFoundIncheckFileAgainst =
+      whitelistExtension.filter(
+        (eachWhitelistExtension) =>
+          !checkFileAgainst.includes(eachWhitelistExtension)
+      );
     checkFileAgainst = [
       ...checkFileAgainst,
       ...whitelistExtensionNotFoundIncheckFileAgainst,
     ];
   }
-  if (blacklistExtension.lenght > 0) {
+  if (blacklistExtension.length > 0) {
     // updating checkFileAgainst for black listed extension
-    let removeBlacklistExtension = checkFileAgainst.map(
+    let removeBlacklistExtension = checkFileAgainst.filter(
       (eachCheckFileAgainst) =>
         !blacklistExtension.includes(eachCheckFileAgainst)
     );
@@ -67,10 +68,10 @@ module.exports = fileValidator = (args, outputFunction) => {
 
   let blob = file;
   let fileReader = new FileReader(file);
-  fileReader.onloadend = (event) => findValidation(file, event.target.result);
+  fileReader.onloadend = (event) => findValidation(event.target.result);
   fileReader.readAsArrayBuffer(blob);
 
-  const findValidation = async (file, arrayBuffer) => {
+  const findValidation = async (arrayBuffer) => {
     // validator function
     let array = new Uint8Array(arrayBuffer).subarray(0, 20);
     let mimeString = "";
@@ -80,8 +81,6 @@ module.exports = fileValidator = (args, outputFunction) => {
     }
 
     // validation code start...
-    console.log({ mimeString });
-
     if (
       (mimeString.includes("ffd8ffe0") ||
         mimeString.includes("ffd8ffe1") ||
