@@ -1,7 +1,7 @@
 module.exports = fileValidator = (args, outputFunction) => {
   let {
     file,
-    media = ["image"],
+    media = [],
     whitelistExtension = [],
     blacklistExtension = [],
     returnBase64 = true,
@@ -43,6 +43,16 @@ module.exports = fileValidator = (args, outputFunction) => {
       "bmp",
     ];
   }
+  if (media.includes("audio")) {
+    checkFileAgainst = [
+      ...checkFileAgainst,
+      "mp3",
+      "ogg",
+      "wav",
+      "mid",
+      "midi",
+    ];
+  }
   // set default extension for all media type end...
 
   if (whitelistExtension.length > 0) {
@@ -63,6 +73,27 @@ module.exports = fileValidator = (args, outputFunction) => {
       (eachCheckFileAgainst) =>
         !blacklistExtension.includes(eachCheckFileAgainst)
     );
+    // removing similar type of extension
+    if (
+      blacklistExtension.includes("jpg") ||
+      blacklistExtension.includes("jpeg")
+    ) {
+      let removeSimilarBlacklistExtension = removeBlacklistExtension.filter(
+        (eachBlackListExtension) =>
+          eachBlackListExtension !== "jpg" && eachBlackListExtension !== "jpeg"
+      );
+      removeBlacklistExtension = removeSimilarBlacklistExtension;
+    }
+    if (
+      blacklistExtension.includes("mid") ||
+      blacklistExtension.includes("midi")
+    ) {
+      let removeSimilarBlacklistExtension = removeBlacklistExtension.filter(
+        (eachBlackListExtension) =>
+          eachBlackListExtension !== "mid" && eachBlackListExtension !== "midi"
+      );
+      removeBlacklistExtension = removeSimilarBlacklistExtension;
+    }
     checkFileAgainst = [...removeBlacklistExtension];
   }
 
@@ -81,6 +112,7 @@ module.exports = fileValidator = (args, outputFunction) => {
     }
 
     // validation code start...
+    // all image extionsios...
     if (
       (mimeString.includes("ffd8ffe0") ||
         mimeString.includes("ffd8ffe1") ||
@@ -114,6 +146,28 @@ module.exports = fileValidator = (args, outputFunction) => {
     } else if (
       mimeString.includes("424d") &&
       checkFileAgainst.includes("bmp")
+    ) {
+      returnSuccessResult();
+    }
+    // all audio extensions...
+    else if (
+      mimeString.includes("494433") &&
+      checkFileAgainst.includes("mp3")
+    ) {
+      returnSuccessResult();
+    } else if (
+      mimeString.includes("4f676753") &&
+      checkFileAgainst.includes("ogg")
+    ) {
+      returnSuccessResult();
+    } else if (
+      (mimeString.includes("52494646") || mimeString.includes("57415645")) &&
+      checkFileAgainst.includes("wav")
+    ) {
+      returnSuccessResult();
+    } else if (
+      mimeString.includes("4d546864") &&
+      (checkFileAgainst.includes("mid") || checkFileAgainst.includes("midi"))
     ) {
       returnSuccessResult();
     } else {
