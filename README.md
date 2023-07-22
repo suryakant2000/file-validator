@@ -17,6 +17,41 @@ npm i generic-file-validator
 
 ## User guide
 
+### Usage
+Here is the example usage in react app.
+```
+import "./App.css";
+import fileValidator from "generic-file-validator";
+
+function App() {
+  const handleChange = (e) => {
+    let file = e.target.files[0];
+
+    fileValidator(
+      {
+        file: file,
+        media: ["image"],
+        whitelistExtension: ["jpg", "jpeg"],
+        blacklistExtension: ["png"],
+      },
+      callback
+    );
+  };
+
+  const callback = (res) => {
+    console.log({ res });
+  };
+
+  return (
+    <div className="App">
+      <input type="file" onChange={handleChange} />
+    </div>
+  );
+}
+
+export default App;
+```
+
 ### Props
 | Props name | Description | Defalut value | Required | Example |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
