@@ -63,6 +63,6 @@ function App() {
 export default App;
 ```
 
-# message
+# Message
 More extension support comming soon, 
 let me know if you need any extension support.
