@@ -13,6 +13,7 @@ npm i generic-file-validator
 | ------------- | ------------- |
 | image  | .jpg, .jpeg, .png, .gif, .webp, .tiff, .bmp  |
 | audio  | .mp3, .ogg, .wav, .mid, .midi  |
+| application  | .doc, .docx, .xls, .xlsx, .ppt, .pptx, .zip, .apk, .pdf  |
 
 <br>
 
@@ -61,3 +62,7 @@ function App() {
 
 export default App;
 ```
+
+# message
+More extension support comming soon, 
+let me know if you need any extension support.

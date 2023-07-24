@@ -53,6 +53,20 @@ module.exports = fileValidator = (args, outputFunction) => {
       "midi",
     ];
   }
+  if (media.includes("application")) {
+    checkFileAgainst = [
+      ...checkFileAgainst,
+      "doc",
+      "xls",
+      "ppt",
+      "docx",
+      "zip",
+      "apk",
+      "pptx",
+      "xlsx",
+      "pdf",
+    ];
+  }
   // set default extension for all media type end...
 
   if (whitelistExtension.length > 0) {
@@ -168,6 +182,31 @@ module.exports = fileValidator = (args, outputFunction) => {
     } else if (
       mimeString.includes("4d546864") &&
       (checkFileAgainst.includes("mid") || checkFileAgainst.includes("midi"))
+    ) {
+      returnSuccessResult();
+    }
+    // all application extensions...
+    else if (
+      mimeString.includes("d0cf11e0a1b11ae1") &&
+      (checkFileAgainst.includes("doc") ||
+        checkFileAgainst.includes("xls") ||
+        checkFileAgainst.includes("ppt"))
+    ) {
+      returnSuccessResult();
+    } else if (
+      (mimeString.includes("504b0304") ||
+        mimeString.includes("504b0506") ||
+        mimeString.includes("504b0708")) &&
+      (checkFileAgainst.includes("docx") ||
+        checkFileAgainst.includes("zip") ||
+        checkFileAgainst.includes("apk") ||
+        checkFileAgainst.includes("pptx") ||
+        checkFileAgainst.includes("xlsx"))
+    ) {
+      returnSuccessResult();
+    } else if (
+      mimeString.includes("255044462d") &&
+      (checkFileAgainst.includes("pdf"))
     ) {
       returnSuccessResult();
     } else {
