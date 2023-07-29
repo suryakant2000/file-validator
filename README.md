@@ -12,7 +12,8 @@ npm i generic-file-validator
 | Media  | Extension |
 | ------------- | ------------- |
 | image  | .jpg, .jpeg, .png, .gif, .webp, .tiff, .bmp  |
-| audio  | .mp3, .ogg, .wav, .mid, .midi  |
+| audio  | .mp3, .ogg, .oga, .wav, .mid, .midi  |
+| video  | .mp4, .ogg, .ogv, .avi, .mpeg, .ogv, .webm, .mkv, .3gp  |
 | application  | .doc, .docx, .xls, .xlsx, .ppt, .pptx, .zip, .apk, .pdf  |
 
 <br>
@@ -62,7 +63,3 @@ function App() {
 
 export default App;
 ```
-
-# Message
-More extension support comming soon, 
-let me know if you need any extension support.

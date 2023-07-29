@@ -1,6 +1,6 @@
 {
   "name": "generic-file-validator",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "This package is designed to check file (MIME) type and extension as well.",
   "main": "fileValidator.js",
   "scripts": {
@@ -15,7 +15,11 @@
     "image-validator",
     "image-extension-validator",
     "audio-validator",
-    "audio-extension-validator"
+    "audio-extension-validator",
+    "video-validator",
+    "video-extension-validator",
+    "document-validator",
+    "pdf-validator"
   ],
   "author": "suryakant",
   "license": "ISC",

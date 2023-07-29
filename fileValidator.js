@@ -1,6 +1,6 @@
 module.exports = fileValidator = (args, outputFunction) => {
   let {
-    file,
+    file = null,
     media = [],
     whitelistExtension = [],
     blacklistExtension = [],
@@ -68,7 +68,7 @@ module.exports = fileValidator = (args, outputFunction) => {
   const mediaExtensions = {
     // media and supported extensions
     image: ["jpg", "jpeg", "png", "gif", "webp", "tiff", "bmp"],
-    audio: ["mp3", "ogg", "wav", "mid", "midi"],
+    audio: ["mp3", "ogg", "oga", "wav", "mid", "midi"],
     application: [
       "doc",
       "xls",
@@ -80,10 +80,15 @@ module.exports = fileValidator = (args, outputFunction) => {
       "apk",
       "pdf",
     ],
+    video: ["mp4", "avi", "mpeg", "ogg", "ogv", "webm", "mkv", "3gp"],
   };
 
   const extensionSignature = {
     // extensions and file singnature
+
+    // common extensions
+    ogg: ["4f676753"], // audio and video
+
     // image extensions
     jpg: [
       "ffd8ffe0",
@@ -106,14 +111,14 @@ module.exports = fileValidator = (args, outputFunction) => {
       "49460001",
     ],
     png: ["89504e47"],
-    gif: ["47494638"],
+    gif: ["474946383761", "474946383961"],
     webp: ["52494646", "57454250"],
-    tiff: ["49492a00", "4d4d002a"],
+    tiff: ["49492a0"],
     bmp: ["424d"],
 
     // audio extensions
     mp3: ["494433"],
-    ogg: ["4f676753"],
+    oga: ["4f676753"],
     wav: ["52494646", "57415645"],
     mid: ["4d546864"],
     midi: ["4d546864"],
@@ -128,6 +133,15 @@ module.exports = fileValidator = (args, outputFunction) => {
     zip: ["504b0304", "504b0506", "504b0708"],
     apk: ["504b0304", "504b0506", "504b0708"],
     pdf: ["255044462d"],
+
+    //video extensions
+    mp4: ["66747970"],
+    avi: ["52494646", "41564920"],
+    mpeg: ["001ba210"],
+    ogv: ["4f676753"],
+    webm: ["1a45dfa3"],
+    mkv: ["1a45dfa3"],
+    "3gp": ["66747970"],
   };
 
   // setting list of extension, file will be checked start...
@@ -210,6 +224,7 @@ module.exports = fileValidator = (args, outputFunction) => {
     for (let i = 0; i < array.length; i++) {
       mimeString += array[i].toString(16);
     }
+    console.log({ mimeString });
 
     let resultFound = false;
 
