@@ -12,8 +12,8 @@ npm i generic-file-validator
 | Media  | Extension |
 | ------------- | ------------- |
 | image  | .jpg, .jpeg, .png, .gif, .webp, .tiff, .bmp  |
-| audio  | .mp3, .ogg, .oga, .wav, .mid, .midi  |
-| video  | .mp4, .ogg, .ogv, .avi, .mpeg, .webm, .mkv, .3gp  |
+| audio  | .mp3, .oga, .wav, .mid, .midi  |
+| video  | .mp4, .ogv, .avi, .mpeg, .webm, .mkv, .3gp  |
 | application  | .doc, .docx, .xls, .xlsx, .ppt, .pptx, .zip, .apk, .pdf  |
 
 <br>

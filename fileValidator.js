@@ -41,34 +41,45 @@ module.exports = fileValidator = (args, outputFunction) => {
     }
   };
 
-  const returnErrorResult = (message) => {
+  const returnErrorResult = (message, notReturnExtension) => {
     // return error result to user
-    outputFunction({
-      type: "error",
-      message: message,
-      fileChedkedAgaistExtension: checkFileAgainst,
-    });
+    notReturnExtension
+      ? outputFunction({
+          type: "error",
+          message: message,
+        })
+      : outputFunction({
+          type: "error",
+          message: message,
+          fileChedkedAgaistExtension: checkFileAgainst,
+        });
   };
 
   // all props error handling start...
   if (!file) {
-    return returnErrorResult("file not provided");
+    return returnErrorResult("file not provided", true);
   }
   if (!Array.isArray(media)) {
-    return returnErrorResult("media should be array of srting");
+    return returnErrorResult("media should be array of srting", true);
   }
   if (!Array.isArray(whitelistExtension)) {
-    return returnErrorResult("whitelistExtension should be array of srting");
+    return returnErrorResult(
+      "whitelistExtension should be array of srting",
+      true
+    );
   }
   if (!Array.isArray(blacklistExtension)) {
-    return returnErrorResult("blacklistExtension should be array of srting");
+    return returnErrorResult(
+      "blacklistExtension should be array of srting",
+      true
+    );
   }
   // all props error handling end...
 
   const mediaExtensions = {
     // media and supported extensions
     image: ["jpg", "jpeg", "png", "gif", "webp", "tiff", "bmp"],
-    audio: ["mp3", "ogg", "oga", "wav", "mid", "midi"],
+    audio: ["mp3", "oga", "wav", "mid", "midi"],
     application: [
       "doc",
       "xls",
@@ -80,14 +91,11 @@ module.exports = fileValidator = (args, outputFunction) => {
       "apk",
       "pdf",
     ],
-    video: ["mp4", "avi", "mpeg", "ogg", "ogv", "webm", "mkv", "3gp"],
+    video: ["mp4", "avi", "mpeg", "ogv", "webm", "mkv", "3gp"],
   };
 
   const extensionSignature = {
     // extensions and file singnature
-
-    // common extensions
-    ogg: ["4f676753"], // audio and video
 
     // image extensions
     jpg: [
@@ -224,7 +232,6 @@ module.exports = fileValidator = (args, outputFunction) => {
     for (let i = 0; i < array.length; i++) {
       mimeString += array[i].toString(16);
     }
-    console.log({ mimeString });
 
     let resultFound = false;
 
